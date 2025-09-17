@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Games 11 — Login</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#4b2ca6 0%, #5a2ea6 30%, #7b2fb0 60%, #9b34b6 100%);
+    color:#fff; display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  .card{
+    width: 380px; max-width: 95vw;
+    background: rgba(255,255,255,.08);
+    border-radius: 18px; padding: 28px 24px 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    backdrop-filter: blur(10px);
+  }
+  .logo-wrap{display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:26px;}
+  .logo{
+    width:100px; height:100px; border-radius:50%;
+    background: conic-gradient(#3B82F6, #EF4444, #F59E0B, #10B981, #3B82F6);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 8px 25px rgba(0,0,0,.25);
+  }
+  .logo span{font-size:48px; font-weight:900; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.35);}
+  .brand{font-size:28px; font-weight:800;}
+  .brand .n{color:#FBD34D}
+  h1{letter-spacing:6px; font-weight:700; text-align:center; margin:6px 0 10px; opacity:.95;}
+
+  .group{position:relative; margin:14px 0;}
+  .group input{
+    width:100%; padding:16px 16px 16px 56px;
+    border:none; border-radius:28px; outline:none;
+    background:#fff; color:#222; font-size:15px;
+  }
+  .ico{
+    position:absolute; left:16px; top:50%; transform:translateY(-50%);
+    width:28px; height:28px; background:#5a2ea6; border-radius:999px; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:16px;
+  }
+
+  .btn{
+    width:100%; padding:16px; border:none; border-radius:28px;
+    background:#fff; color:#222; font-weight:800; letter-spacing:1px; cursor:pointer; margin-top:12px;
+  }
+  .btn.primary{ background:#ffffff; color:#2d2d2d; }
+  .btn.primary:hover{ filter:brightness(.95); }
+
+  .links{ text-align:center; font-size:14px; margin-top:12px; }
+  .links a{ color:#eee; text-decoration:none; display:block; margin:8px 0; }
+  .links a:hover{ text-decoration:underline; }
+
+  .hidden{ display:none; }
+  .center{ text-align:center; }
+  .otp-row{ display:flex; gap:10px; justify-content:center; margin:8px 0 2px; }
+  .otp-row input{ width:46px; height:50px; text-align:center; font-size:20px; border:none; border-radius:10px; color:#111; }
+  .pill{ padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.15); display:inline-block; margin-top:8px; font-size:12px; }
+  .wallet{ text-align:center; margin-top:16px; background: rgba(255,255,255,.12); padding:16px; border-radius:12px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- LOGO / TITLE -->
+  <div class="logo-wrap">
+    <div class="logo"><span>G</span></div>
+    <div class="brand">Games <span class="n">11</span></div>
+  </div>
+
+  <!-- ===== LOGIN PAGE ===== -->
+  <section id="loginPage">
+    <h1>LOGIN</h1>
+
+
+<form id="loginForm">
+  <input type="text" id="phone" placeholder="Phone Number" required>
+  <input type="password" id="password" placeholder="Password" required><br>
+  <button type="submit">Login</button>
+</form>
+
+    <div class="links">
+      <a href="#" id="loginWithOtpLink">Login with OTP</a>
+      <a href="#" id="gotoSignup">Don't Have an Account ?  Sign Up Now</a>
+      <a href="#" id="gotoForgot">Forgot Password?</a>
+    </div>
+  </section>
+
+  <!-- ===== SIGNUP ===== -->
+  <section id="signupPage" class="hidden">
+    <h1>SIGN UP</h1>
+    <div class="group"><div class="ico">📞</div><input id="suPhone" type="tel" placeholder="Mobile Number"/></div>
+    <div class="group"><div class="ico">👤</div><input id="suName" type="text" placeholder="Full Name"/></div>
+    <div class="group"><div class="ico">✉️</div><input id="suEmail" type="email" placeholder="Email (optional)"/></div>
+    <div class="group"><div class="ico">🔒</div><input id="suPassword" type="password" placeholder="Password"/></div>
+    <button class="btn primary" id="signupBtn">CREATE ACCOUNT</button>
+    <div class="links"><a href="#" class="backLogin">Back to Login</a></div>
+  </section>
+
+  <!-- ===== OTP ===== -->
+  <section id="otpPage" class="hidden">
+    <h1>OTP</h1>
+    <div class="center">Enter the 6-digit code sent to <span class="pill" id="otpPhonePill"></span></div>
+    <div class="otp-row" id="otpInputs"></div>
+    <button class="btn primary" id="verifyOtpBtn">VERIFY</button>
+    <div class="links"><a href="#" class="backLogin">Back to Login</a></div>
+  </section>
+
+  <!-- ===== FORGOT PASSWORD ===== -->
+  <section id="forgotPage" class="hidden">
+    <h1>RESET</h1>
+    <div class="group"><div class="ico">📞</div><input id="fpPhone" type="tel" placeholder="Mobile Number"/></div>
+    <div class="group"><div class="ico">🔑</div><input id="fpNewPass" type="password" placeholder="New Password"/></div>
+    <button class="btn primary" id="resetBtn">SET NEW PASSWORD</button>
+    <div class="links"><a href="#" class="backLogin">Back to Login</a></div>
+  </section>
+
+  <!-- ===== APP (after login) ===== -->
+  <section id="appPage" class="hidden">
+    <div class="center"><h1>WELCOME</h1><div class="pill" id="helloName">Hello</div></div>
+    <div class="wallet">
+      <div>My Wallet</div>
+      <div style="font-size:28px; font-weight:900; margin:8px 0;">₹<span id="walletAmt">0</span></div>
+      <button class="btn primary" id="add100">Add ₹100</button>
+    </div>
+    <div class="links"><a href="#" id="logout">Logout</a></div>
+  </section>
+
+</div>
+
+
+
+
+<script>
+  const API = 'http://localhost:3000/api';
+
+  /* ===== UI helpers ===== */
+  const pages = ['loginPage','signupPage','otpPage','forgotPage','appPage'];
+  const show = id => pages.forEach(p => document.getElementById(p).classList.toggle('hidden', p!==id));
+
+  function clampPhone(el){ el.value = el.value.replace(/\D/g,'').slice(0,10); }
+  ['loginPhone','suPhone','fpPhone'].forEach(id=>{
+    const el = document.getElementById(id);
+    el && el.addEventListener('input', ()=>clampPhone(el));
+  });
+
+  /* ===== OTP inputs build ===== */
+  (function buildOtp(){
+    const row = document.getElementById('otpInputs');
+    for(let i=0;i<6;i++){
+      const inp = document.createElement('input');
+      inp.type='text'; inp.maxLength=1;
+      inp.addEventListener('input', e=>{
+        e.target.value = e.target.value.replace(/\D/g,'').slice(0,1);
+        if(e.target.value && e.target.nextElementSibling) e.target.nextElementSibling.focus();
+      });
+      inp.addEventListener('keydown', e=>{
+        if(e.key==='Backspace' && !e.target.value && e.target.previousElementSibling){
+          e.target.previousElementSibling.focus();
+        }
+      });
+      row.appendChild(inp);
+    }
+  })();
+
+  /* ===== Navigation links ===== */
+  document.querySelectorAll('.backLogin').forEach(a=>a.addEventListener('click', e=>{ e.preventDefault(); show('loginPage'); }));
+
+  document.getElementById('gotoSignup').addEventListener('click', e=>{ e.preventDefault(); show('signupPage'); });
+  document.getElementById('gotoForgot').addEventListener('click', e=>{ e.preventDefault(); show('forgotPage'); });
+
+  /* ===== Signup ===== */
+  document.getElementById('signupBtn').addEventListener('click', async ()=>{
+    const phone = document.getElementById('suPhone').value.trim();
+    const name  = document.getElementById('suName').value.trim();
+    const email = document.getElementById('suEmail').value.trim();
+    const password = document.getElementById('suPassword').value;
+
+    if(!phone || !password){ alert('Phone & password required'); return; }
+    const res = await fetch(`${API}/signup`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ phone, name, email, password })
+    });
+    const data = await res.json();
+    if(data.success){ alert('Signup successful. Please login.'); show('loginPage'); }
+    else alert(data.error || 'Signup failed');
+  });
+
+  /* ===== Password login ===== */
+  document.getElementById('passwordLoginBtn').addEventListener('click', async ()=>{
+    const phone = document.getElementById('loginPhone').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    if(!phone || !password){ alert('Enter phone & password'); return; }
+
+    const res = await fetch(`${API}/login`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ phone, password })
+    });
+    const data = await res.json();
+    if(data.success){
+      localStorage.setItem('g11_phone', phone);
+      document.getElementById('helloName').textContent = data.user.name ? `Hello, ${data.user.name}` : `Hello, ${phone}`;
+      document.getElementById('walletAmt').textContent = data.user.wallet || 0;
+      show('appPage');
+    }else{
+      alert(data.error || 'Login failed');
+    }
+  });
+
+  /* ===== Login with OTP (request) ===== */
+  document.getElementById('loginWithOtpLink').addEventListener('click', async (e)=>{
+    e.preventDefault();
+    const phone = document.getElementById('loginPhone').value.trim();
+    if(!phone){ alert('Enter your mobile number first'); return; }
+
+    const res = await fetch(`${API}/request-otp`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ phone })
+    });
+    const data = await res.json();
+    if(data.success){
+      // In real app, OTP is sent via SMS. For demo, show it.
+      alert(`OTP (demo): ${data.otp}`);
+      document.getElementById('otpPhonePill').textContent = phone;
+      localStorage.setItem('g11_phone', phone);
+      // clear previous boxes
+      document.querySelectorAll('#otpInputs input').forEach(i=>i.value='');
+      show('otpPage');
+      setTimeout(()=>document.querySelector('#otpInputs input').focus(), 120);
+    } else {
+      alert(data.error || 'Could not send OTP');
+    }
+  });
+
+  /* ===== Verify OTP ===== */
+  document.getElementById('verifyOtpBtn').addEventListener('click', async ()=>{
+    const phone = localStorage.getItem('g11_phone');
+    const code = [...document.querySelectorAll('#otpInputs input')].map(i=>i.value).join('');
+    if(code.length !== 6){ alert('Enter 6-digit OTP'); return; }
+
+    const res = await fetch(`${API}/verify-otp`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ phone, otp: code })
+    });
+    const data = await res.json();
+    if(data.success){
+      document.getElementById('helloName').textContent = data.user.name ? `Hello, ${data.user.name}` : `Hello, ${phone}`;
+      document.getElementById('walletAmt').textContent = data.user.wallet || 0;
+      show('appPage');
+    } else {
+      alert(data.error || 'OTP verify failed');
+    }
+  });
+
+  /* ===== Forgot password ===== */
+  document.getElementById('resetBtn').addEventListener('click', async ()=>{
+    const phone = document.getElementById('fpPhone').value.trim();
+    const newPassword = document.getElementById('fpNewPass').value;
+    if(!phone || !newPassword) return alert('Enter phone & new password');
+
+    const res = await fetch(`${API}/forgot-password`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ phone, newPassword })
+    });
+    const data = await res.json();
+    if(data.success){ alert('Password updated. Please login.'); show('loginPage'); }
+    else alert(data.error || 'Reset failed');
+  });
+
+  /* ===== Wallet add ₹100 ===== */
+  document.getElementById('add100').addEventListener('click', async ()=>{
+    const phone = localStorage.getItem('g11_phone');
+    const res = await fetch(`${API}/wallet/add`,{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ phone, amount: 100 })
+    });
+    const data = await res.json();
+    if(data.success){
+      document.getElementById('walletAmt').textContent = data.wallet;
+    } else {
+      alert(data.error || 'Could not add coins');
+    }
+  });
+
+  /* ===== Logout ===== */
+  document.getElementById('logout').addEventListener('click', e=>{
+    e.preventDefault();
+    localStorage.removeItem('g11_phone');
+    show('loginPage');
+  });
+
+  /* ===== Enter key shortcuts on login ===== */
+  document.addEventListener('keydown', (e)=>{
+    if(e.key!=='Enter') return;
+    if(!document.getElementById('loginPage').classList.contains('hidden')){
+      document.getElementById('passwordLoginBtn').click();
+    }
+  });
+</script>
+
+<script>
+  // Attach login form submit handler
+  document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const phone = document.getElementById("phone").value;
+    const password = document.getElementById("password").value;
+
+    // Example backend call (replace with real API later)
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone, password })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      // ✅ Redirect to Home Page
+      window.location.href = "home.html";
+    } else {
+      alert("Invalid login. Try again.");
+    }
+  });
+</script>
+
+
+
+</body>
+</html>

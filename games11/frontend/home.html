@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games11 — Home</title>
+  <style>
+    /* ===== Reset ===== */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4e0eff, #7a00ff);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== Top Navbar ===== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: rgba(0,0,0,0.2);
+    }
+    .navbar h1 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .menu, .bell {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* ===== Banner ===== */
+    .banner {
+      margin: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ===== Game Card ===== */
+    .game-card {
+      margin: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .game-card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ===== Action Buttons (Scratch, Add, Withdraw) ===== */
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 10px;
+    }
+    .action-btn {
+      flex: 1;
+      margin: 0 5px;
+      border-radius: 12px;
+      text-align: center;
+      padding: 15px;
+      color: black;
+      font-weight: bold;
+      background: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .action-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== Refer & Earn Banner ===== */
+    .refer {
+      margin: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .refer img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ===== Bottom Navigation ===== */
+    .bottom-nav {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      background: rgba(0,0,0,0.2);
+    }
+    .bottom-item {
+      text-align: center;
+      flex: 1;
+    }
+    .bottom-item span {
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div class="navbar">
+    <div class="menu">☰</div>
+    <h1>Home</h1>
+    <div class="bell">🔔</div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <img src="https://via.placeholder.com/400x120/ff0000/ffffff?text=Game+Banner" alt="Banner">
+  </div>
+
+  <!-- Game Card -->
+  <div class="game-card">
+    <img src="https://via.placeholder.com/400x150/00aaff/ffffff?text=Ludo+King" alt="Ludo King">
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <div class="action-btn" style="background: #ff4444; color:white;">Scratch & WIN</div>
+    <div class="action-btn" style="background: linear-gradient(#3df47e,#00d4ff);">ADD COIN</div>
+    <div class="action-btn" style="background: linear-gradient(#d46fff,#b300ff); color:white;">WITHDRAW</div>
+  </div>
+
+  <!-- Refer & Earn -->
+  <div class="refer">
+    <img src="https://via.placeholder.com/400x120/007bff/ffffff?text=Refer+%26+Earn" alt="Refer & Earn">
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <div class="bottom-item">
+      👤
+      <span>My Profile</span>
+    </div>
+    <div class="bottom-item">
+      💰
+      <span>My Wallet</span>
+    </div>
+    <div class="bottom-item">
+      ❓
+      <span>Contact Us</span>
+    </div>
+  </div>
+
+</body>
+</html>
