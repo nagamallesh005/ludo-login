@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ludo King Login</title>
+<style>
+    /* General Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Card Container */
+    .login-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        width: 360px;
+        padding: 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Title */
+    .login-card h1 {
+        color: #ff416c;
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+
+    /* Ludo dice decoration */
+    .dice {
+        width: 30px;
+        height: 30px;
+        background: #ff416c;
+        color: #fff;
+        border-radius: 5px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        margin: 0 5px;
+        animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+        from { transform: translateY(0); }
+        to { transform: translateY(-10px); }
+    }
+
+    /* Input Fields */
+    .login-card input[type="text"],
+    .login-card input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 12px 0;
+        border: none;
+        border-radius: 50px;
+        background: #f1f1f1;
+        font-size: 1rem;
+        outline: none;
+        transition: 0.3s;
+    }
+    .login-card input[type="text"]:focus,
+    .login-card input[type="password"]:focus {
+        background: #ffe6e6;
+    }
+
+    /* Button */
+    .login-card button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 50px;
+        background: #ff416c;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.3s, transform 0.2s;
+    }
+    .login-card button:hover {
+        background: #ff4b2b;
+        transform: scale(1.05);
+    }
+
+    /* Footer Links */
+    .login-card .footer {
+        margin-top: 15px;
+        font-size: 0.9rem;
+    }
+    .login-card .footer a {
+        color: #ff416c;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .login-card .footer a:hover {
+        text-decoration: underline;
+    }
+
+    /* Error message */
+    .error {
+        color: red;
+        font-size: 0.85rem;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+    <div class="login-card">
+        <h1>
+            <span class="dice">🎲</span> Ludo King <span class="dice">🎲</span>
+        </h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <div id="errorMsg" class="error"></div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="footer">
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+            <p><a href="#">Forgot Password?</a></p>
+        </div>
+    </div>
+
+<script>
+    // Simple JS login validation
+    const form = document.getElementById('loginForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Simple validation
+        if(username === '' || password === '') {
+            errorMsg.textContent = 'Please enter both username and password.';
+            return;
+        }
+
+        // Fake login check
+        if(username === 'admin' && password === '1234') {
+            alert('Login successful! 🎉');
+            errorMsg.textContent = '';
+        } else {
+            errorMsg.textContent = 'Invalid username or password.';
+        }
+    });
+</script>
+</body>
+</html>
